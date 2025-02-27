@@ -20,18 +20,18 @@ public class PrincipalComBusca {
         System.out.println(response.body());
         
 
-        Scanner leitura = new Scanner(System.in);
-        System.out.println("Digite o nome da criptomoeda para a cotação (por exemplo, bitcoin): ");
-        var criptoNome = leitura.nextLine();
+        try (Scanner leitura = new Scanner(System.in)) {
+            System.out.println("Digite o nome da criptomoeda para a cotação (por exemplo, bitcoin): ");
+            var criptoNome = leitura.nextLine();
 
-        String endereco = "https://api.coingecko.com/api/v3/simple/price?ids=" + criptoNome + "&vs_currencies=usd";
+            String endereco = "https://api.coingecko.com/api/v3/simple/price?ids=" + criptoNome + "&vs_currencies=usd";
 
-        HttpClient client2 = HttpClient.newHttpClient();
-        HttpRequest request2 = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
-        HttpResponse<String> response2 = client2.send(request2, HttpResponse.BodyHandlers.ofString());
+            HttpClient client2 = HttpClient.newHttpClient();
+            HttpRequest request2 = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
+            HttpResponse<String> response2 = client2.send(request2, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(response2.body());
-
+            System.out.println(response2.body());
+        }
     }
     
 }
